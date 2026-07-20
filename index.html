@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>불규칙 동사 암기 마스터 - VerbsMemorizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>VerbsMemorizer</h1>
+      
+      <!-- Progress Bar Area -->
+      <div class="progress-container">
+        <div class="progress-track">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="progress-label">
+          <span>나의 암기 진척도</span>
+          <span id="progress-text">0 / 0 (0%)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs-navigation">
+      <button class="tab-btn active" data-tab="list" id="tab-list-btn">
+        <span>📋</span> 단어장 목록
+      </button>
+      <button class="tab-btn" data-tab="flashcard" id="tab-flashcard-btn">
+        <span>🎴</span> 플래시카드
+      </button>
+      <button class="tab-btn" data-tab="quiz" id="tab-quiz-btn">
+        <span>📝</span> 실전 퀴즈
+      </button>
+    </nav>
+
+    <!-- SECTION 1: VERB LIST -->
+    <section id="list-section" class="app-section active">
+      <div class="controls-row">
+        <div class="search-wrapper">
+          <input type="text" id="search-input" placeholder="원형, 과거형, 과거분사 또는 뜻으로 검색..." autocomplete="off">
+        </div>
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">전체</button>
+          <button class="filter-btn" data-filter="learning">공부 중</button>
+          <button class="filter-btn" data-filter="memorized">외움</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 60px;">외움</th>
+              <th>원형 (Infinitive)</th>
+              <th>과거형 (Past)</th>
+              <th>과거분사 (Past Participle)</th>
+              <th>뜻 (Meaning)</th>
+            </tr>
+          </thead>
+          <tbody id="verbs-tbody">
+            <!-- JavaScript will render content here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 2: FLASHCARDS -->
+    <section id="flashcard-section" class="app-section">
+      <div class="flashcard-wrapper">
+        <div class="card-header-info">
+          <span id="card-counter">0 / 0</span>
+          <span class="status-badge learning" id="card-status-badge">외우는 중</span>
+        </div>
+
+        <div class="flashcard-container">
+          <div class="flashcard" id="flashcard">
+            <!-- Card Front -->
+            <div class="card-face card-front">
+              <span class="prompt-label">동사원형 (Infinitive)</span>
+              <h2 id="card-front-title">go</h2>
+              <span class="card-hint">카드를 클릭해 뒤집으세요</span>
+            </div>
+            
+            <!-- Card Back -->
+            <div class="card-face card-back">
+              <div class="card-back-grid">
+                <div class="form-col">
+                  <span class="form-title">원형</span>
+                  <span class="form-value" id="card-back-base">go</span>
+                </div>
+                <div class="form-col">
+                  <span class="form-title">과거형</span>
+                  <span class="form-value" id="card-back-past">went</span>
+                </div>
+                <div class="form-col">
+                  <span class="form-title">과거분사</span>
+                  <span class="form-value" id="card-back-pp">gone</span>
+                </div>
+              </div>
+              <div class="card-back-meaning" id="card-back-meaning">가다</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation & Memorized Check Actions -->
+        <div class="card-actions">
+          <button class="arrow-btn" id="card-prev-btn" title="이전">◀</button>
+          <button class="action-btn action-btn-danger" id="card-dont-know-btn">
+            <span>✗</span> 아직 헷갈려요
+          </button>
+          <button class="action-btn action-btn-success" id="card-know-btn">
+            <span>✓</span> 확실히 외웠어요
+          </button>
+          <button class="arrow-btn" id="card-next-btn" title="다음">▶</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: QUIZ -->
+    <section id="quiz-section" class="app-section">
+      <div class="quiz-wrapper">
+        
+        <!-- Active Quiz Container -->
+        <div id="quiz-active-container" class="quiz-card">
+          <div class="quiz-header">
+            <span class="quiz-q-counter" id="quiz-q-counter">문제 1 / 10</span>
+            <span class="status-badge" style="background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--glass-border);">실전 테스트</span>
+          </div>
+
+          <div class="quiz-prompt-box">
+            <span class="prompt-label">다음 뜻에 맞는 동사의 변화형을 완성하세요</span>
+            <h3 class="quiz-meaning-prompt" id="quiz-meaning-prompt">가다</h3>
+          </div>
+
+          <div class="quiz-forms-grid" id="quiz-question-fields">
+            <!-- Dynamic quiz fields input here -->
+          </div>
+
+          <!-- Feedback message -->
+          <div id="quiz-feedback" class="quiz-feedback-box hidden">
+            <!-- Dynamic feedback -->
+          </div>
+
+          <div class="quiz-submit-btn-wrapper">
+            <button id="quiz-submit-btn" class="quiz-btn-full primary">정답 확인</button>
+            <button id="quiz-next-btn" class="quiz-btn-full success hidden">다음 문제 ▶</button>
+          </div>
+        </div>
+
+        <!-- Result Quiz Container -->
+        <div id="quiz-result-container" class="quiz-result-card hidden">
+          <span style="font-size: 4rem;">📊</span>
+          <h3>테스트 결과</h3>
+          <div class="score-display" id="quiz-result-score">0 / 10</div>
+          <div class="score-pct" id="quiz-result-pct">정답률: 0%</div>
+          <p class="result-message" id="quiz-result-message">좋은 시도였습니다!</p>
+          <button id="quiz-restart-btn" class="quiz-btn-full primary" style="max-width: 250px; margin-top: 1rem;">다시 도전하기</button>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
