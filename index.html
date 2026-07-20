@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>불규칙 동사 암기 마스터 - VerbsMemorizer</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="container">
     <header>
       <h1>VerbsMemorizer</h1>
-      
+
       <!-- Progress Bar Area -->
       <div class="progress-container">
         <div class="progress-track">
@@ -83,7 +85,7 @@
               <h2 id="card-front-title">go</h2>
               <span class="card-hint">카드를 클릭해 뒤집으세요</span>
             </div>
-            
+
             <!-- Card Back -->
             <div class="card-face card-back">
               <div class="card-back-grid">
@@ -122,12 +124,14 @@
     <!-- SECTION 3: QUIZ -->
     <section id="quiz-section" class="app-section">
       <div class="quiz-wrapper">
-        
+
         <!-- Active Quiz Container -->
         <div id="quiz-active-container" class="quiz-card">
           <div class="quiz-header">
             <span class="quiz-q-counter" id="quiz-q-counter">문제 1 / 10</span>
-            <span class="status-badge" style="background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--glass-border);">실전 테스트</span>
+            <span class="status-badge"
+              style="background: rgba(255,255,255,0.05); color: var(--text-muted); border: 1px solid var(--glass-border);">실전
+              테스트</span>
           </div>
 
           <div class="quiz-prompt-box">
@@ -157,7 +161,8 @@
           <div class="score-display" id="quiz-result-score">0 / 10</div>
           <div class="score-pct" id="quiz-result-pct">정답률: 0%</div>
           <p class="result-message" id="quiz-result-message">좋은 시도였습니다!</p>
-          <button id="quiz-restart-btn" class="quiz-btn-full primary" style="max-width: 250px; margin-top: 1rem;">다시 도전하기</button>
+          <button id="quiz-restart-btn" class="quiz-btn-full primary" style="max-width: 250px; margin-top: 1rem;">다시
+            도전하기</button>
         </div>
 
       </div>
@@ -166,4 +171,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>
